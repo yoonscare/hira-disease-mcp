@@ -1,0 +1,42 @@
+{
+  "name": "hira-disease-mcp",
+  "version": "0.1.0",
+  "description": "Remote MCP server for HIRA disease information service, designed for Claude custom connectors.",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "bin": {
+    "hira-disease-mcp": "dist/src/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts --mode http --port 3000",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "hira",
+    "healthcare",
+    "korean-medicine",
+    "disease",
+    "claude"
+  ],
+  "author": "Yoon Scare",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "fast-xml-parser": "^5.3.3",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.3",
+    "@vercel/node": "^5.5.10",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}
