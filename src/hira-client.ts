@@ -46,6 +46,11 @@ function pickBody(parsed: unknown): Record<string, unknown> {
   return root?.response?.body ?? root?.body ?? {}
 }
 
+function isNormalResultCode(resultCode: string): boolean {
+  const normalized = resultCode.trim()
+  return normalized === "" || normalized === "0" || normalized === "00"
+}
+
 export class HiraClient {
   private readonly serviceKey?: string
   private readonly baseUrl: string
@@ -89,7 +94,7 @@ export class HiraClient {
     const body = pickBody(parsed)
     const resultCode = String(header.resultCode ?? body.resultCode ?? "")
 
-    if (resultCode && resultCode !== "00") {
+    if (!isNormalResultCode(resultCode)) {
       const resultMessage = header.resultMsg ?? header.resultMessage ?? body.resultMsg ?? "Unknown HIRA API error"
       throw new Error(`HIRA API error ${resultCode}: ${String(resultMessage)}`)
     }
