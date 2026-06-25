@@ -2,7 +2,7 @@
 
 건강보험심사평가원 질병정보서비스를 Claude custom connector에서 바로 쓰기 위한 원격 MCP 서버입니다.
 
-한의사 대상 강의에서 사용할 수 있도록 기본값은 `medTp=2` 한방 기준으로 잡았습니다.
+한의사 대상 강의에서 사용할 수 있도록 기본값은 `medTp=1` 한방 기준으로 잡았습니다. 의과(양방) 기준으로 조회하려면 `medTp=2`를 사용하면 됩니다.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yoonscare/hira-disease-mcp)
 
@@ -87,6 +87,21 @@ https://YOUR_DOMAIN/mcp?key=...
 
 Source: https://www.data.go.kr/data/15119055/openapi.do
 
+## Who Can Use This?
+
+한의사만 사용할 수 있는 도구가 아닙니다.
+
+HIRA 질병정보서비스는 의과(양방)·한방 구분값을 제공하므로, 한의사뿐 아니라 의사, 보건의료 연구자, 보험·심사 관련 실무자, 의료 데이터 교육자도 사용할 수 있습니다.
+
+`medTp` 값은 아래처럼 사용합니다.
+
+| medTp | Meaning |
+| --- | --- |
+| `1` | 한방 |
+| `2` | 의과(양방) |
+
+이 repo는 한의사 강의용 편의를 위해 기본값만 `medTp=1`로 둔 것이고, 도구 입력에서 `medTp=2`를 지정하면 의과 기준으로 조회할 수 있습니다.
+
 ## Claude Connector URL Formats
 
 이 서버는 아래 형식을 모두 지원합니다.
@@ -133,7 +148,7 @@ Example:
 {
   "searchText": "요추염좌",
   "diseaseType": "SICK_NM",
-  "medTp": 2,
+  "medTp": 1,
   "numOfRows": 10
 }
 ```
@@ -146,7 +161,7 @@ Example:
 {
   "sickCd": "J00",
   "year": 2024,
-  "medTp": 2
+  "medTp": 1
 }
 ```
 
@@ -237,7 +252,8 @@ For Claude Desktop or local MCP clients:
 
 - HIRA changed the disease API base path to `diseaseInfoService1` and operation names ending in `1`.
 - This server uses `getDissNameCodeList1`, `getDissByGenderAgeStats1`, `getDissByHsptlzFrgnStats1`, `getDissByClassesStats1`, and `getDissByAreaStats1`.
-- The default `medTp=2` is intended for Korean medicine use cases.
+- HIRA `medTp` code: `1` = Korean medicine, `2` = medicine/western medicine.
+- The default `medTp=1` is intended for Korean medicine lecture use cases.
 
 ## License
 
