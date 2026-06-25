@@ -31,8 +31,8 @@ const commonDiseaseParams = {
   },
   medTp: {
     type: "number",
-    description: "Medical type. HIRA guide: 1 = Korean medicine, 2 = medicine/western medicine.",
-    default: 1,
+    description: "Medical type. HIRA guide: 1 = medicine/western medicine, 2 = Korean medicine.",
+    default: 2,
     enum: [1, 2],
   },
 }
@@ -54,7 +54,7 @@ function baseParams(args: Record<string, unknown>) {
     pageNo: numberArg(args, "pageNo", 1),
     numOfRows: numberArg(args, "numOfRows", 10),
     sickType: numberArg(args, "sickType", 1),
-    medTp: numberArg(args, "medTp", 1),
+    medTp: numberArg(args, "medTp", 2),
   }
 }
 
@@ -83,7 +83,7 @@ export const tools: ToolDefinition[] = [
   {
     name: "hira_search_disease",
     description:
-      "Search HIRA disease names and codes. Defaults to Korean medicine data with medTp=1. Use medTp=2 for medicine/western medicine.",
+      "Search HIRA disease names and codes. Defaults to Korean medicine data with medTp=2. Use medTp=1 for medicine/western medicine.",
     inputSchema: {
       type: "object",
       required: ["searchText"],
@@ -112,7 +112,7 @@ export const tools: ToolDefinition[] = [
   {
     name: "hira_disease_gender_age_stats",
     description:
-      "Get HIRA disease statistics by gender and age. Defaults to Korean medicine with medTp=1; use medTp=2 for medicine/western medicine.",
+      "Get HIRA disease statistics by gender and age. Defaults to Korean medicine with medTp=2; use medTp=1 for medicine/western medicine.",
     inputSchema: {
       type: "object",
       required: ["sickCd"],
