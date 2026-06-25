@@ -10,11 +10,21 @@
 
 Claude custom connector에 넣을 주소는 아래 둘 중 하나입니다.
 
-### Option A. 강의자가 제공한 서버를 쓰는 경우
+### Option A. 공개 서버를 바로 쓰는 경우
 
-강의나 문서에서 제공된 실제 주소를 그대로 복사해서 사용하세요.
+대부분의 사용자는 아래 주소만 복사해서 Claude custom connector에 넣으면 됩니다.
 
-예를 들어 강의 서버가 `hiradisease.vercel.app`이면:
+```text
+https://hira-disease-mcp.vercel.app/mcp?oc=YOUR_DATA_GO_KR_SERVICE_KEY
+```
+
+여기서 바꾸는 부분은 마지막의 `YOUR_DATA_GO_KR_SERVICE_KEY`뿐입니다.
+
+공공데이터포털 인증키는 가능하면 **Encoding 인증키**를 사용하세요. 인증키에 `+`, `/`, `=` 같은 문자가 들어가면 URL에서 깨질 수 있습니다.
+
+### Option B. 강의자가 별도 도메인을 제공한 경우
+
+강의자가 `hiradisease.vercel.app` 같은 별도 주소를 제공했다면 그 주소를 그대로 사용하세요.
 
 ```text
 https://hiradisease.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY
@@ -26,11 +36,7 @@ https://hiradisease.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY
 https://hiradisease.vercel.app/mcp?oc=YOUR_DATA_GO_KR_SERVICE_KEY
 ```
 
-여기서 바꾸는 부분은 마지막의 `YOUR_DATA_GO_KR_SERVICE_KEY`뿐입니다.
-
-공공데이터포털 인증키는 가능하면 **Encoding 인증키**를 사용하세요. 인증키에 `+`, `/`, `=` 같은 문자가 들어가면 URL에서 깨질 수 있습니다.
-
-### Option B. 직접 배포해서 쓰는 경우
+### Option C. 직접 배포해서 쓰는 경우
 
 위의 **Deploy with Vercel** 버튼을 눌러 본인 Vercel에 배포합니다.
 
@@ -54,7 +60,8 @@ MCP 서버가 배포된 실제 인터넷 주소를 뜻합니다.
 
 | Situation | Connector URL |
 | --- | --- |
-| 강의 서버 사용 | `https://hiradisease.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY` |
+| 공개 서버 바로 사용 | `https://hira-disease-mcp.vercel.app/mcp?oc=YOUR_DATA_GO_KR_SERVICE_KEY` |
+| 강의자가 별도 도메인을 제공 | `https://hiradisease.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY` |
 | 내 Vercel 프로젝트 사용 | `https://your-project-name.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY` |
 | 내 커스텀 도메인 사용 | `https://my-domain.com/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY` |
 
