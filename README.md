@@ -4,6 +4,68 @@
 
 한의사 대상 강의에서 사용할 수 있도록 기본값은 `medTp=2` 한방 기준으로 잡았습니다.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yoonscare/hira-disease-mcp)
+
+## Quick Start For Claude
+
+Claude custom connector에 넣을 주소는 아래 둘 중 하나입니다.
+
+### Option A. 강의자가 제공한 서버를 쓰는 경우
+
+강의나 문서에서 제공된 실제 주소를 그대로 복사해서 사용하세요.
+
+예를 들어 강의 서버가 `hiradisease.vercel.app`이면:
+
+```text
+https://hiradisease.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY
+```
+
+법률 MCP처럼 짧은 파라미터도 지원합니다.
+
+```text
+https://hiradisease.vercel.app/mcp?oc=YOUR_DATA_GO_KR_SERVICE_KEY
+```
+
+여기서 바꾸는 부분은 마지막의 `YOUR_DATA_GO_KR_SERVICE_KEY`뿐입니다.
+
+### Option B. 직접 배포해서 쓰는 경우
+
+위의 **Deploy with Vercel** 버튼을 눌러 본인 Vercel에 배포합니다.
+
+배포가 끝나면 Vercel이 이런 주소를 줍니다.
+
+```text
+https://your-project-name.vercel.app
+```
+
+그 주소 뒤에 `/mcp?key=본인_API키`를 붙입니다.
+
+```text
+https://your-project-name.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY
+```
+
+## What Is `YOUR_DOMAIN`?
+
+`YOUR_DOMAIN`은 직접 입력하는 단어가 아닙니다.
+
+MCP 서버가 배포된 실제 인터넷 주소를 뜻합니다.
+
+| Situation | Connector URL |
+| --- | --- |
+| 강의 서버 사용 | `https://hiradisease.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY` |
+| 내 Vercel 프로젝트 사용 | `https://your-project-name.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY` |
+| 내 커스텀 도메인 사용 | `https://my-domain.com/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY` |
+
+즉, README나 예시에서 보이는 `YOUR_DOMAIN`은 아래 부분입니다.
+
+```text
+https://YOUR_DOMAIN/mcp?key=...
+        ^^^^^^^^^^^
+        실제 배포 도메인
+```
+
+처음 사용하는 사람은 `YOUR_DOMAIN`을 직접 고민하지 말고, 강의자가 제공한 완성 URL 또는 Vercel 배포 후 나온 URL을 복사하면 됩니다.
+
 ## What It Does
 
 - 질병명/상병코드 검색
@@ -16,21 +78,17 @@
 
 Source: https://www.data.go.kr/data/15119055/openapi.do
 
-## Claude Connector URL
+## Claude Connector URL Formats
 
-배포 후 Claude custom connector에 아래 주소를 넣습니다.
-
-```text
-https://YOUR_DOMAIN/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY
-```
-
-`korean-law-mcp`처럼 짧은 쿼리 이름도 지원합니다.
+이 서버는 아래 형식을 모두 지원합니다.
 
 ```text
-https://YOUR_DOMAIN/mcp?oc=YOUR_DATA_GO_KR_SERVICE_KEY
+https://DEPLOYED_DOMAIN/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY
+https://DEPLOYED_DOMAIN/mcp?oc=YOUR_DATA_GO_KR_SERVICE_KEY
+https://DEPLOYED_DOMAIN/mcp?serviceKey=YOUR_DATA_GO_KR_SERVICE_KEY
 ```
 
-또는 헤더 방식도 지원합니다.
+고급 사용자는 헤더 방식도 사용할 수 있습니다.
 
 ```text
 x-api-key: YOUR_DATA_GO_KR_SERVICE_KEY
@@ -109,6 +167,10 @@ J00 상병코드의 2024년 한방 성별·연령별 통계를 요약해줘.
 
 ## Deploy To Vercel
 
+가장 쉬운 방법은 README 상단의 **Deploy with Vercel** 버튼을 누르는 것입니다.
+
+CLI로 직접 배포하려면:
+
 ```bash
 npm install
 npm run build
@@ -120,6 +182,8 @@ Vercel에 배포되면 `/mcp`가 `/api/mcp`로 rewrite됩니다.
 ```text
 https://YOUR_PROJECT.vercel.app/mcp?key=YOUR_DATA_GO_KR_SERVICE_KEY
 ```
+
+Claude connector에는 Vercel 프로젝트 홈 주소가 아니라, 반드시 `/mcp?key=...`까지 붙인 주소를 넣어야 합니다.
 
 ## Local Development
 
