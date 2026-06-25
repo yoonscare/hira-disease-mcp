@@ -16,10 +16,11 @@ const parser = new XMLParser({
 
 function normalizeServiceKey(serviceKey?: string): string | undefined {
   if (!serviceKey) return undefined
+  const spaceFixed = serviceKey.replace(/ /g, "+")
   try {
-    return decodeURIComponent(serviceKey)
+    return decodeURIComponent(spaceFixed)
   } catch {
-    return serviceKey
+    return spaceFixed
   }
 }
 

@@ -28,6 +28,8 @@ https://hiradisease.vercel.app/mcp?oc=YOUR_DATA_GO_KR_SERVICE_KEY
 
 여기서 바꾸는 부분은 마지막의 `YOUR_DATA_GO_KR_SERVICE_KEY`뿐입니다.
 
+공공데이터포털 인증키는 가능하면 **Encoding 인증키**를 사용하세요. 인증키에 `+`, `/`, `=` 같은 문자가 들어가면 URL에서 깨질 수 있습니다.
+
 ### Option B. 직접 배포해서 쓰는 경우
 
 위의 **Deploy with Vercel** 버튼을 눌러 본인 Vercel에 배포합니다.
@@ -106,7 +108,9 @@ Authorization: Bearer YOUR_DATA_GO_KR_SERVICE_KEY
 5. `활용신청` 클릭
 6. 개발단계로 신청
 7. 마이페이지 → 개발계정 → 인증키 확인
-8. Claude connector URL의 `key=` 뒤에 입력
+8. Claude connector URL의 `key=` 또는 `oc=` 뒤에 입력
+
+Claude connector URL에는 가능하면 **Encoding 인증키**를 넣으세요.
 
 공공데이터포털 안내에 따르면 개발계정은 자동승인이고, 개발계정 트래픽은 10,000건입니다.
 
